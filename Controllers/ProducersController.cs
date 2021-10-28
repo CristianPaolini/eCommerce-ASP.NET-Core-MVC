@@ -1,5 +1,6 @@
 ﻿using eTickets.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace eTickets.Controllers
 {
-    public class ActorsController : Controller
+    public class ProducersController : Controller
     {
         private readonly AppDbContext _context;
-        public ActorsController(AppDbContext context)
+        public ProducersController(AppDbContext context)
         {
             _context = context;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()    //asynchronous way
         {
-            var actorsList = _context.Actors.ToList();
+            var producersList = await _context.Producers.ToListAsync();
             return View();
         }
     }
