@@ -25,17 +25,17 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label" asp-for="StartDate"></label>
-                                <input class="form-control" asp-for="StartDate" />
+                                <input type="date" class="form-control" asp-for="StartDate" />
                                 <span class="text-danger" asp-validation-for="StartDate"></span>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" asp-for="EndDate"></label>
-                                <input class="form-control" asp-for="EndDate" />
+                                <input type="date" class="form-control" asp-for="EndDate" />
                                 <span class="text-danger" asp-validation-for="EndDate"></span>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" asp-for="Price"></label>
-                                <input class="form-control" asp-for="Price" />
+                                <input type="number" class="form-control" asp-for="Price" />
                                 <span class="text-danger" asp-validation-for="Price"></span>
 
                             </div>
@@ -70,7 +70,6 @@
                                 <span class="text-danger" asp-validation-for="ActorIds"></span>
                             </div>
                         </div>
-
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="control-label" asp-for="Description"></label>
@@ -79,9 +78,27 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-md-4 offset-4 text-center">
+                        <img id="ImageUrlPreview" width="100%" />
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                        <a class="btn btn-outline-secondary" asp-action="Index">Show all</a>
+                    </div>
                 </form>
 
             </div>
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script>
+        $("ImageURL").on("change", function () {
+            let output = document.getElementById("ImageUrlPreview");
+            output.src = $(this).val();
+        })
+    </script>
+ }
