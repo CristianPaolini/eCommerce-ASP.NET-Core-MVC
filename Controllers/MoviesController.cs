@@ -73,6 +73,8 @@ namespace eTickets.Controllers
                 Name = movieDetails.Name,
                 Description = movieDetails.Description,
                 Price = movieDetails.Price,
+                StartDate = movieDetails.StartDate,
+                EndDate = movieDetails.EndDate,
                 ImageURL = movieDetails.ImageURL,
                 MovieCategory = movieDetails.MovieCategory,
                 CinemaId = movieDetails.CinemaId,
@@ -81,7 +83,6 @@ namespace eTickets.Controllers
             };
 
             var movieDropdownsData = await _service.GetNewMovieDropdownsValues();
-
             ViewBag.Cinemas = new SelectList(movieDropdownsData.Cinemas, "Id", "Name");
             ViewBag.Producers = new SelectList(movieDropdownsData.Producers, "Id", "FullName");
             ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "FullName");
@@ -93,6 +94,7 @@ namespace eTickets.Controllers
         public async Task<IActionResult> Edit(int id, NewMovieVM movie)
         {
             if (id != movie.Id) return View("NotFound");
+
             if (!ModelState.IsValid)
             {
                 var movieDropdownsData = await _service.GetNewMovieDropdownsValues();
@@ -104,7 +106,7 @@ namespace eTickets.Controllers
                 return View(movie);
             }
 
-            await _service.AddNewMovieAsync(movie);
+            await _service.UpdateMovieAsync(movie);
             return RedirectToAction(nameof(Index));
         }
     }
