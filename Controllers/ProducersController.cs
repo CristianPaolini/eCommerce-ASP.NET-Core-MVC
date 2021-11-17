@@ -17,10 +17,10 @@ namespace eTickets.Controllers
         {
             _service = service;
         }
-        public async Task<IActionResult> Index()    //asynchronous way
+        public async Task<IActionResult> Index()    
         {
-            var producersList = await _service.GetAllAsync();
-            return View(producersList);
+            var producers = await _service.GetAllAsync();
+            return View(producers);
         }
 
         //GET: producers/details/1

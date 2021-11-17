@@ -20,29 +20,29 @@ namespace eTickets.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var moviesList = await _service.GetAllAsync(n => n.Cinema);
-            return View(moviesList);
+            var movies = await _service.GetAllAsync(n => n.Cinema);
+            return View(movies);
         }
 
         public async Task<IActionResult> Filter(string searchString)
         {
-            var moviesList = await _service.GetAllAsync(n => n.Cinema);
+            var movies = await _service.GetAllAsync(n => n.Cinema);
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                var filteredResult = moviesList.Where(n => n.Name.Contains(searchString) || n.Description.Contains
+                var filteredResult = movies.Where(n => n.Name.Contains(searchString) || n.Description.Contains
                 (searchString)).ToList();
                 return View("Index", filteredResult);
             }
 
-            return View("Index", moviesList); // If it gets a match, it lists the movie(s). Otherwise it lists all the movies.
+            return View("Index", movies); // If it gets a match, it lists the movie(s). Otherwise it lists all the movies.
         }                                   // When clicking search with no value provided, it will list all the movies.
 
         //GET: Movies/Details/1
         public async Task<IActionResult> Details(int id)
         {
-            var movieDetail = await _service.GetMovieByIdAsync(id);
-            return View(movieDetail);
+            var movieDetails = await _service.GetMovieByIdAsync(id);
+            return View(movieDetails);
         }
 
         //GET: Movies/Create
