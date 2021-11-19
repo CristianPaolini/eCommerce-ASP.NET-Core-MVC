@@ -18,6 +18,8 @@ namespace eTickets.Controllers
             _signInManager = signInManager;
             _context = context;
         }
-        public IActionResult Index() => View(new LoginVM());
+        public IActionResult Login() => View(new LoginVM());
+
+
     }
 }
