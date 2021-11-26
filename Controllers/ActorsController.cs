@@ -1,5 +1,6 @@
 ﻿using eTickets.Data;
 using eTickets.Data.Services;
+using eTickets.Data.Static;
 using eTickets.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace eTickets.Controllers
 {
-    [Authorize] //Default decorator that applies to all methods, unless it gets overriden.
+    [Authorize(Roles = UserRoles.Admin)] //Default decorator that applies to all methods, unless it gets overriden.
     public class ActorsController : Controller
     {
         private readonly IActorsService _service;
@@ -20,7 +21,7 @@ namespace eTickets.Controllers
             _service = service;
         }
 
-        [AllowAnonymous] //Overrides authorize. This can be reached by anyone.
+        [AllowAnonymous] //Overrides Authorize. This can be reached by anyone.
         public async Task<IActionResult> Index()
         {
             var actors = await _service.GetAllAsync();
