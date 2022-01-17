@@ -64,7 +64,7 @@ namespace eTickets.Controllers
             var user = await _userManager.FindByEmailAsync(registerVM.EmailAddress);
             if (user != null)
             {
-                TempData["Error"] = "This email adress is already in use.";
+                TempData["Error"] = "This email address is already in use.";
                 return View(registerVM);
             }
 
